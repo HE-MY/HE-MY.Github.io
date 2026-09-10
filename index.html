@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>何沐阳的个人主页</title>
+  <!-- Google Font & Font Awesome 提升视觉 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* 全局重置 & 字体 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: linear-gradient(145deg, #f7f9fc 0%, #eef2f6 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      color: #1e293b;
+      line-height: 1.5;
+    }
+
+    /* 主卡片 — 干净、轻盈、有呼吸感 */
+    .profile-card {
+      max-width: 780px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border-radius: 2.5rem;
+      box-shadow: 
+        0 30px 50px -20px rgba(0, 20, 40, 0.25),
+        0 0 0 1px rgba(255, 255, 255, 0.6) inset,
+        0 0 0 1px rgba(200, 210, 230, 0.4);
+      padding: 2.5rem 2rem;
+      transition: box-shadow 0.3s ease, transform 0.2s ease;
+      animation: floatIn 0.8s cubic-bezier(0.2, 0.9, 0.3, 1);
+    }
+
+    @keyframes floatIn {
+      0% {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* 头像区 — 用 emoji 或首字母更有亲和力，这里用简约圆形 + 名字首字母“沐” */
+    .avatar-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 1.75rem;
+    }
+
+    .avatar {
+      width: 110px;
+      height: 110px;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 16px 28px -8px rgba(59, 130, 246, 0.4), 0 0 0 2px rgba(255, 255, 255, 0.8);
+      margin-bottom: 1.25rem;
+      transition: transform 0.25s ease;
+    }
+
+    .avatar:hover {
+      transform: scale(1.02);
+    }
+
+    .avatar span {
+      font-size: 4rem;
+      font-weight: 600;
+      color: white;
+      text-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      letter-spacing: 1px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* 名字 */
+    .name {
+      font-size: 2.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #1e293b, #2d3b4f);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.25rem;
+      line-height: 1.2;
+    }
+
+    .badge {
+      font-size: 0.95rem;
+      background: #e9eef4;
+      color: #2c3e50;
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 0.25rem;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+    }
+
+    .badge i {
+      font-size: 0.8rem;
+      color: #3b82f6;
+    }
+
+    /* 简介句子 */
+    .bio {
+      text-align: center;
+      font-size: 1.1rem;
+      color: #2c3e50;
+      margin: 1.5rem 0 1.25rem;
+      padding: 0 0.5rem;
+      font-weight: 400;
+      line-height: 1.6;
+      max-width: 540px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .bio .highlight {
+      background: linear-gradient(120deg, #fde68a 0%, #fde68a 40%, transparent 80%);
+      padding: 0.1rem 0.3rem;
+      font-weight: 500;
+      border-radius: 4px;
+      color: #1e293b;
+    }
+
+    /* 网格信息 — 兴趣爱好/技能 */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0 2.25rem;
+    }
+
+    .info-item {
+      background: #ffffffd9;
+      backdrop-filter: blur(2px);
+      border-radius: 1.5rem;
+      padding: 1.2rem 0.8rem;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02), 0 0 0 1px rgba(255, 255, 255, 0.7) inset;
+      transition: all 0.2s ease;
+      border: 1px solid rgba(200, 212, 230, 0.4);
+    }
+
+    .info-item:hover {
+      background: white;
+      box-shadow: 0 12px 20px -12px rgba(59, 130, 246, 0.25), 0 0 0 1px #ffffff inset;
+      transform: translateY(-3px);
+    }
+
+    .info-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.6rem;
+      display: block;
+      color: #3b82f6;
+    }
+
+    .info-label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: #4b5b6b;
+      margin-bottom: 0.25rem;
+    }
+
+    .info-value {
+      font-weight: 500;
+      font-size: 1rem;
+      color: #1e2b3a;
+    }
+
+    /* 社交链接区域 */
+    .social-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.9rem 1.5rem;
+      margin-top: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.2rem;
+      background: #ffffff;
+      border-radius: 40px;
+      text-decoration: none;
+      color: #1e293b;
+      font-weight: 500;
+      font-size: 0.95rem;
+      box-shadow: 0 6px 12px -6px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(210, 220, 235, 0.6);
+      transition: all 0.2s ease;
+    }
+
+    .social-link i {
+      color: #3b82f6;
+      font-size: 1.15rem;
+      transition: transform 0.2s ease;
+    }
+
+    .social-link:hover {
+      background: #ffffff;
+      box-shadow: 0 12px 18px -10px rgba(59, 130, 246, 0.3), 0 0 0 1px #3b82f6 inset;
+      color: #0f172a;
+      transform: scale(1.02);
+    }
+
+    .social-link:hover i {
+      transform: scale(1.1);
+    }
+
+    /* 页脚小字 */
+    .footer-note {
+      margin-top: 2.5rem;
+      font-size: 0.75rem;
+      color: #94a3b8;
+      text-align: center;
+      letter-spacing: 0.02em;
+      border-top: 1px dashed rgba(148, 163, 184, 0.3);
+      padding-top: 1.25rem;
+    }
+
+    .footer-note i {
+      font-size: 0.7rem;
+      margin-right: 0.2rem;
+    }
+
+    /* 响应式微调 */
+    @media (max-width: 480px) {
+      body { padding: 1rem; }
+      .profile-card { padding: 2rem 1.25rem; border-radius: 2rem; }
+      .avatar { width: 90px; height: 90px; }
+      .avatar span { font-size: 3.2rem; }
+      .name { font-size: 1.9rem; }
+      .bio { font-size: 1rem; }
+      .info-grid { gap: 0.75rem; }
+      .info-item { padding: 1rem 0.5rem; }
+      .social-link { padding: 0.5rem 1rem; font-size: 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="profile-card">
+    <!-- 头像区：用“沐”字作为视觉标识，干净有记忆点 -->
+    <div class="avatar-section">
+      <div class="avatar">
+        <span>沐</span>
+      </div>
+      <h1 class="name">何沐阳</h1>
+      <div class="badge">
+        <i class="fas fa-graduation-cap"></i> 初中生 · 热爱学习与探索
+      </div>
+    </div>
+
+    <!-- 简短介绍 -->
+    <div class="bio">
+      🌱 你好！我是何沐阳，一名初中生。<br>
+      喜欢在<span class="highlight">代码、数学与运动</span>之间寻找平衡，<br>
+      正在学习如何让想法变成现实。
+    </div>
+
+    <!-- 信息网格：展示兴趣/技能/目标 -->
+    <div class="info-grid">
+      <div class="info-item">
+        <i class="fas fa-laptop-code info-icon"></i>
+        <div class="info-label">兴趣</div>
+        <div class="info-value">编程 · 数学</div>
+      </div>
+      <div class="info-item">
+        <i class="fas fa-futbol info-icon"></i>
+        <div class="info-label">运动</div>
+        <div class="info-value">篮球 · 跑步</div>
+      </div>
+      <div class="info-item">
+        <i class="fas fa-book-open info-icon"></i>
+        <div class="info-label">正在学</div>
+        <div class="info-value">Python · Web</div>
+      </div>
+      <div class="info-item">
+        <i class="fas fa-star info-icon"></i>
+        <div class="info-label">小目标</div>
+        <div class="info-value">做喜欢的项目</div>
+      </div>
+    </div>
+
+    <!-- 社交链接 / 联系方式 (可替换成你的真实链接) -->
+    <div class="social-links">
+      <a href="#" class="social-link" title="GitHub (占位, 可替换)">
+        <i class="fab fa-github"></i> GitHub
+      </a>
+      <a href="#" class="social-link" title="邮箱 (占位, 可替换)">
+        <i class="fas fa-envelope"></i> 邮箱
+      </a>
+      <a href="#" class="social-link" title="个人博客 (占位)">
+        <i class="fas fa-pen-fancy"></i> 博客
+      </a>
+    </div>
+
+    <!-- 页脚小标记，保持清爽 -->
+    <div class="footer-note">
+      <i class="fas fa-code"></i> 何沐阳 · 个人主页 · 正在成长
+    </div>
+  </div>
+</body>
+</html>
