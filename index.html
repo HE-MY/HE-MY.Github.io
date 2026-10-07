@@ -435,6 +435,43 @@ code {
 }
 .footer__legal { font-size: 12.5px; color: var(--text-3); display: flex; flex-direction: column; gap: 4px; }
 
+/* ---------- v2.0 四字主张：大放易彩 ---------- */
+.slogan-note {
+    text-align: center; color: var(--text-3); font-size: 13.5px;
+    letter-spacing: .12em; margin: 0 0 24px;
+}
+.slogan-note strong { color: var(--text-2); font-weight: 600; }
+.slogan {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 46px;
+}
+.sl-card {
+    --sl: var(--cyan);
+    position: relative; background: var(--bg-card); border: 1px solid var(--line);
+    padding: 26px 20px 24px; overflow: hidden;
+}
+.sl-card::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: var(--sl);
+}
+.sl-char {
+    font-family: var(--font-display); font-size: 46px; font-weight: 700;
+    line-height: 1; color: var(--sl); display: block;
+}
+.sl-card h4 { font-size: 16px; font-weight: 700; margin: 14px 0 8px; }
+.sl-card p { font-size: 13.5px; color: var(--text-2); line-height: 1.75; }
+.sl-card--cyan { --sl: var(--cyan); }
+.sl-card--magenta { --sl: var(--magenta); }
+.sl-card--green { --sl: var(--green); }
+/* 「易」：谐音梗主角，渐变描边 + 渐变字高亮 */
+.sl-card--hl {
+    background: linear-gradient(var(--bg-card), var(--bg-card)) padding-box, var(--grad-brand) border-box;
+    border: 1px solid transparent;
+}
+.sl-card--hl .sl-char {
+    background: var(--grad-brand); -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+}
+
 /* ---------- v1.0 vs v2.0 对比表 ---------- */
 .cmp-wrap { overflow-x: auto; border: 1px solid var(--line); }
 .cmp { min-width: 640px; }
@@ -507,6 +544,7 @@ code {
     .card--wide { grid-column: span 2; }
     .steps { grid-template-columns: repeat(2, 1fr); }
     .step::after { display: none; }
+    .slogan { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 720px) {
     .nav__links {
@@ -536,6 +574,7 @@ code {
     .cards { grid-template-columns: 1fr; }
     .card--wide { grid-column: span 1; }
     .steps { grid-template-columns: 1fr; }
+    .slogan { grid-template-columns: 1fr; }
     .lib-row { grid-template-columns: 56px 1fr 58px; gap: 12px; }
     .lib-row__desc { grid-column: 2 / 4; margin-top: -10px; }
     .mock__side { display: none; }
@@ -714,9 +753,9 @@ code {
                     </article>
 
                     <article class="card reveal">
-                        <div class="card__icon">🖱️</div>
-                        <h3>拖放导入</h3>
-                        <p>把图片或文件夹直接拖进窗口即可导入，Ctrl / Shift 多选批量操作，灵感落地零阻碍。</p>
+                        <div class="card__icon">☑️</div>
+                        <h3>多选与批量操作</h3>
+                        <p>Ctrl / Shift 自由多选，批量添加、替换与删除；列表内直接拖拽排序，几十条纹理一口气处理完。</p>
                     </article>
 
                     <article class="card reveal">
@@ -779,6 +818,30 @@ code {
                     <h2 class="section__title">v2.0 对比 v1.0：一次脱胎换骨的升级</h2>
                     <p class="section__sub">从纹理管理器进化为完整创作工作台 —— 10 项新功能、8 项修复、8 项优化。</p>
                 </header>
+
+                <p class="slogan-note reveal">谐音「<strong>大放异彩</strong>」—— 大制作，放手玩，<strong>易</strong>编辑，彩纷呈</p>
+                <div class="slogan reveal">
+                    <article class="sl-card sl-card--cyan">
+                        <span class="sl-char">大</span>
+                        <h4>纹理库大升级</h4>
+                        <p><strong>3476 条</strong>纹理、44 个子分类，全面对齐 Minecraft 26.3，100% 中文译名覆盖。</p>
+                    </article>
+                    <article class="sl-card sl-card--magenta">
+                        <span class="sl-char">放</span>
+                        <h4>放手去创作</h4>
+                        <p>全局异常兜底、报错自动写入日志，Bug 一键<strong>附带日志直达开发者</strong> —— 你放心放手玩，出问题有人兜底。</p>
+                    </article>
+                    <article class="sl-card sl-card--hl">
+                        <span class="sl-char">易</span>
+                        <h4>编辑更容易</h4>
+                        <p>图片调整与<strong>动态材质可视化制作</strong>，双栈撤销重做、快捷键与右键菜单全程兜底。</p>
+                    </article>
+                    <article class="sl-card sl-card--green">
+                        <span class="sl-char">彩</span>
+                        <h4>全新强调色</h4>
+                        <p>多套强调色<strong>一键切换</strong>，界面随你的喜好出彩，每一套都为长时间创作调校。</p>
+                    </article>
+                </div>
 
                 <div class="cmp-wrap reveal">
                     <div class="cmp">
@@ -882,11 +945,11 @@ code {
                         </div>
 
                         <div class="cmp-row">
-                            <div class="cmp-cell cmp-feat">拖放导入</div>
+                            <div class="cmp-cell cmp-feat">多选与批量操作</div>
                             <div class="cmp-cell cmp-col1"><span class="cmp-no">—</span></div>
                             <div class="cmp-cell cmp-col2 cmp-has">
                                 <span class="cmp-yes">✓</span>
-                                <span>图片 / 文件夹直接拖入窗口</span>
+                                <span>Ctrl / Shift 多选 · 批量替换删除</span>
                                 <em class="cmp-new">NEW</em>
                             </div>
                         </div>
